@@ -6,11 +6,17 @@ importers:
     specifiers:
       '@swc/core': 1.2.133
       '@swc/jest': 0.2.17
+      '@tsconfig/node16': 1.0.2
+      '@types/jest': 27.4.0
       jest: 27.4.7
+      typescript: 4.5.5
     devDependencies:
       '@swc/core': 1.2.133
       '@swc/jest': 0.2.17_@swc+core@1.2.133
+      '@tsconfig/node16': 1.0.2
+      '@types/jest': 27.4.0
       jest: 27.4.7
+      typescript: 4.5.5
 
   2_state:
     specifiers:
@@ -770,6 +776,10 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /@tsconfig/node16/1.0.2:
+    resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
+    dev: true
+
   /@types/aria-query/4.2.2:
     resolution: {integrity: sha512-HnYpAE1Y6kRyKM/XkEuiRQhTHvkzMBurTHnpFLYLBGPIylZNPs9jJcuOOYWxPLJCSEtmZT0Y8rHDokKN7rRTig==}
     dev: true
@@ -823,6 +833,13 @@ packages:
     resolution: {integrity: sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==}
     dependencies:
       '@types/istanbul-lib-report': 3.0.0
+    dev: true
+
+  /@types/jest/27.4.0:
+    resolution: {integrity: sha512-gHl8XuC1RZ8H2j5sHv/JqsaxXkDDM9iDOgu0Wp8sjs4u/snb2PVehyWXJPr+ORA0RPpgw231mnutWI1+0hgjIQ==}
+    dependencies:
+      jest-diff: 27.4.6
+      pretty-format: 27.4.6
     dev: true
 
   /@types/node/17.0.10:
@@ -2690,6 +2707,12 @@ packages:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
     dependencies:
       is-typedarray: 1.0.0
+    dev: true
+
+  /typescript/4.5.5:
+    resolution: {integrity: sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /universalify/0.1.2:

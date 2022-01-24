@@ -1,16 +1,15 @@
 {
-  "name": "1_declarative_vs_imperative",
+  "name": "2_state",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest --watch"
   },
-  "author": "",
   "license": "UNLICENSED",
   "jest": {
     "preset": "../jest.config.js",
-    "testRegex": "index\\.jsx?$"
+    "testRegex": "\\.test\\.jsx?$"
   },
   "dependencies": {
     "react": "17.0.2",

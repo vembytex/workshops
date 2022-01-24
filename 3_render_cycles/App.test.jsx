@@ -1,5 +1,5 @@
-import React, { useRef, useCallback, useState } from 'react';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import React, { useState } from 'react';
 
 const rerenders = {};
 test('', () => {

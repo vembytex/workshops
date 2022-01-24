@@ -17,6 +17,6 @@
   },
   "jest": {
     "preset": "../jest.config.js",
-    "testRegex": "index\\.jsx?$"
+    "testRegex": "\\.test\\.jsx?$"
   }
 }

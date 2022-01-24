@@ -1,21 +1,37 @@
 module.exports = {
-  testEnvironment: "jest-environment-jsdom",
+  testEnvironment: 'jest-environment-jsdom',
   transform: {
-    "^.+\\.(t|j)sx?$": [
-      "@swc/jest",
+    '^.+\\.(t)sx?$': [
+      '@swc/jest',
       {
         jsc: {
           parser: {
-            syntax: "ecmascript",
-            jsx: true,
+            syntax: 'typescript',
+            tsx: true
           },
           transform: {
             react: {
-              runtime: "automatic",
-            },
-          },
-        },
-      },
+              runtime: 'automatic'
+            }
+          }
+        }
+      }
     ],
-  },
+    '^.+\\.(j)sx?$': [
+      '@swc/jest',
+      {
+        jsc: {
+          parser: {
+            syntax: 'ecmascript',
+            jsx: true
+          },
+          transform: {
+            react: {
+              runtime: 'automatic'
+            }
+          }
+        }
+      }
+    ]
+  }
 };
