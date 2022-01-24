@@ -1,0 +1,14 @@
+{
+  "name": "workshops",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@swc/core": "1.2.133",
+    "@swc/jest": "0.2.17",
+    "jest": "27.4.7"
+  }
+}
