@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imperative</title>
+  </head>
+  <body>
+    <label for="inputA">A</label>
+    <input
+      style="display: block"
+      type="text"
+      name="inputA"
+      oninput="handleInput(event)"
+    />
+    <label for="inputB">B</label>
+    <input
+      style="display: block"
+      type="text"
+      name="inputB"
+      oninput="handleInput(event)"
+    />
+    <label for="inputC">C</label>
+    <input
+      style="display: block"
+      type="text"
+      name="inputC"
+      oninput="handleInput(event)"
+    />
+
+    <div style="margin-top: 10px">
+      <span>Value: <span id="container"></span></span>
+    </div>
+
+    <script>
+      let state = {};
+
+      function handleInput(e) {
+        state = { ...state, [e.target.name]: e.target.value };
+        rerender(state);
+      }
+
+      function rerender(state) {
+        document.getElementById('container').innerHTML =
+          state.inputA + state.inputB + state.inputC;
+      }
+    </script>
+  </body>
+</html>

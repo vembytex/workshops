@@ -85,3 +85,4 @@ storybook-static/
 
 **/tsdoc-metadata.json
 *.code-workspace
+.swc/

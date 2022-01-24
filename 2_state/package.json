@@ -1,5 +1,5 @@
 {
-  "name": "2_state",
+  "name": "1_declarative_vs_imperative",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,5 +11,12 @@
   "jest": {
     "preset": "../jest.config.js",
     "testRegex": "index\\.jsx?$"
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@testing-library/react": "12.1.2"
   }
 }
