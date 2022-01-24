@@ -4,47 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Imperative</title>
+    <title>Declarative</title>
   </head>
   <body>
-    <label for="inputA">A</label>
-    <input
-      style="display: block"
-      type="text"
-      name="inputA"
-      oninput="handleInput(event)"
-    />
-    <label for="inputB">B</label>
-    <input
-      style="display: block"
-      type="text"
-      name="inputB"
-      oninput="handleInput(event)"
-    />
-    <label for="inputC">C</label>
-    <input
-      style="display: block"
-      type="text"
-      name="inputC"
-      oninput="handleInput(event)"
-    />
-
-    <div style="margin-top: 10px">
-      <span>Value: <span id="container"></span></span>
-    </div>
+    <div id="root"></div>
 
     <script>
-      let state = {};
+      let state = { inputA: '', inputB: '', inputC: '' };
 
       function handleInput(e) {
         state = { ...state, [e.target.name]: e.target.value };
-        rerender(state);
+        paint(state);
       }
 
-      function rerender(state) {
-        document.getElementById('container').innerHTML =
-          state.inputA + state.inputB + state.inputC;
+      function paint(state) {
+        const inputA = document.createElement('input');
+        inputA.type = 'text';
+        inputA.name = 'inputA';
+        inputA.value = state.inputA;
+        inputA.oninput = function (e) {
+          paint({ ...state, inputA: e.target.value });
+        };
+
+        const inputB = document.createElement('input');
+        inputB.type = 'text';
+        inputB.name = 'inputB';
+        inputB.value = state.inputB;
+        inputB.oninput = function (e) {
+          paint({ ...state, inputB: e.target.value });
+        };
+
+        const inputC = document.createElement('input');
+        inputC.type = 'text';
+        inputC.name = 'inputC';
+        inputC.value = state.inputC;
+        inputC.oninput = function (e) {
+          paint({ ...state, inputC: e.target.value });
+        };
+
+        const container = document.createElement('div');
+        container.id = 'container';
+        container.innerHTML = state.inputA + state.inputB + state.inputC;
+
+        document
+          .getElementById('root')
+          .replaceChildren(inputA, inputB, inputC, container);
       }
+
+      paint(state);
     </script>
   </body>
 </html>

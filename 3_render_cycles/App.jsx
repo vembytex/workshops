@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 
 export function App({ name }) {
@@ -7,3 +8,5 @@ export function App({ name }) {
 
   return <div>{value}</div>;
 }
+
+ReactDOM.render();
