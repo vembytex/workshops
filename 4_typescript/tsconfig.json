@@ -1,0 +1,26 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "./",
+
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "declaration": true,
+    // "composite": true,
+    // "sourceMap": true,
+    // "declarationMap": true,
+    // "inlineSources": true,
+    // "experimentalDecorators": true,
+    // "strict": true,
+    // "esModuleInterop": true,
+    // "noEmitOnError": false,
+    // "allowUnreachableCode": false,
+    // "moduleResolution": "node",
+    // "noImplicitReturns": true,
+    // "resolveJsonModule": true,
+
+    "types": ["jest"]
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"]
+}

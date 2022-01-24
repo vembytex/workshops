@@ -1,0 +1,22 @@
+{
+  "name": "3_render_cycles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@testing-library/react": "12.1.2"
+  },
+  "jest": {
+    "preset": "../jest.config.js",
+    "testRegex": "\\.test\\.jsx?$"
+  }
+}
