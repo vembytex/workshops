@@ -1,12 +1,30 @@
 import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 
-export function App({ name }) {
-  const [value, setValue] = useState('');
+export function App({ items, compute }) {
+  const [state, setState] = useState(0);
 
-  useEffect(() => setValue(name), [setValue, name]);
+  const filteredItems = items.filter((item) => item > state);
+  const computedItems = compute(filteredItems);
 
-  return <div>{value}</div>;
+  useEffect(() => setState(10), [setState]);
+
+  return (
+    <div>
+      <div>{filteredItems.length}</div>
+      <Component items={computedItems} onInit={setState} />
+    </div>
+  );
 }
 
-ReactDOM.render();
+function Component({ items, onInit }) {
+  useEffect(() => onInit(20), [onInit]);
+
+  return (
+    <div>
+      {items.map((item) => (
+        <div key={item}>{item}</div>
+      ))}
+    </div>
+  );
+}

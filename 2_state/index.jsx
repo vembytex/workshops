@@ -1,24 +1,24 @@
-import { useState, useEffect } from 'react';
+jest.mock('react', () => {
+  const react = jest.requireActual('react');
+  return {
+    ...react,
+    useState: jest.fn(react.useState)
+  };
+});
 
-const initialState = {
-  items: Array.from({ length: 10 }, (v, k) => ({
-    id: k,
-    price: Math.random() * (2000 - 500) + 500
-  }))
-};
+import { useState } from 'react';
+import { render } from '@testing-library/react';
+import App from './App';
 
-function App() {
-  const [state, setState] = useState({});
-}
+test('', () => {
+  render(
+    <App
+      items={Array.from({ length: 10 }, (v, k) => ({
+        id: k,
+        price: Math.random() * (2000 - 500) + 500
+      }))}
+    />
+  );
 
-function Component(state) {
-  const [items, setItems] = useState(state.items);
-  const [show, setShow] = useState(!!items.length);
-
-  useEffect(() => setItems(state.items), []);
-  useEffect(() => setShow(!!state.items.length), [state.items.length]);
-
-  return show ? <div>{items.length}</div> : null;
-}
-
-test('', () => {});
+  expect(useState).toHaveBeenCalledTimes(0);
+});
