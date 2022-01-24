@@ -1,24 +1,25 @@
-jest.mock('react', () => {
-  const react = jest.requireActual('react');
-  return {
-    ...react,
-    useState: jest.fn(react.useState)
-  };
-});
-
-import { render } from '@testing-library/react';
-import { useState } from 'react';
+import { render, screen } from '@testing-library/react';
+import React, * as reactModule from 'react';
 import App from './App';
 
-test('', () => {
+it('doesnt render unnessary due to wrong state', async () => {
+
+  let rerenders = 0;
+  function handleRender(id,...args) {
+    rerenders++;
+  }
+
   render(
-    <App
-      items={Array.from({ length: 10 }, (v, k) => ({
-        id: k,
-        price: Math.random() * (2000 - 500) + 500
-      }))}
-    />
+    <React.Profiler id={`app`} onRender={handleRender}>
+      <App
+        items={Array.from({ length: 10 }, (v, k) => ({
+          id: k
+        }))}
+        />
+      </React.Profiler>
   );
 
-  expect(useState).toHaveBeenCalledTimes(0);
+  const text = await screen.findByText("the length of the list is 10");
+  expect(text).not.toBeUndefined();
+  expect(rerenders).toBe(1);
 });

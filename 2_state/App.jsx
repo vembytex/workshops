@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export default function App({ items }) {
-  const [width, setWidth] = useState(items.length * 4);
+  const [derivedState, setDerivedState] = useState("");
 
-  useEffect(() => setWidth(items.length * 4), [items.length]);
+  useEffect(() => 
+    setDerivedState(`the length of the list is ${items.length}`), 
+    [items.length]
+  );
 
-  return <div style={{ width }}>{items.length}</div>;
+  return <div>{derivedState}</div>;
 }
