@@ -1,5 +1,6 @@
-import { getUserInfo } from './getUserInfoTs';
-import { IUser } from './IUser';
+//@ts-ignore
+import { getUserInfo } from '../getUserInfoJs';
+import { IUser } from '../IUser';
 
 describe('getUserInfoTs', () => {
   it('renders minimum data safely', () => {
@@ -24,7 +25,7 @@ describe('getUserInfoTs', () => {
 
     const result = getUserInfo(user);
 
-    expect(result).toBe('John Doe Denmark() Somes address');
+    expect(result).toBe('John Doe Denmark Some address');
   });
   it('renders full data safely', () => {
     const user: IUser = {
@@ -40,6 +41,6 @@ describe('getUserInfoTs', () => {
 
     const result = getUserInfo(user);
 
-    expect(result).toBe('John Doe Denmark(DK) Somes address');
+    expect(result).toBe('John Doe Denmark (DK) Some address');
   });
 });

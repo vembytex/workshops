@@ -1,8 +1,9 @@
-import { getUserInfo } from './getUserInfoTs';
+import { getUserInfo } from '../getUserInfoTs';
+import { IUser } from '../IUser';
 
-describe('getUserInfoJs', () => {
+describe('getUserInfoTs', () => {
   it('renders minimum data safely', () => {
-    const user = {
+    const user: IUser = {
       name: 'John Doe'
     };
 
@@ -11,7 +12,7 @@ describe('getUserInfoJs', () => {
     expect(result).toBe('John Doe');
   });
   it('renders almost full data safely', () => {
-    const user = {
+    const user: IUser = {
       name: 'John Doe',
       address: {
         country: {
@@ -23,10 +24,10 @@ describe('getUserInfoJs', () => {
 
     const result = getUserInfo(user);
 
-    expect(result).toBe('John Doe Denmark() Somes address');
+    expect(result).toBe('John Doe Denmark Some address');
   });
   it('renders full data safely', () => {
-    const user = {
+    const user: IUser = {
       name: 'John Doe',
       address: {
         country: {
@@ -39,6 +40,6 @@ describe('getUserInfoJs', () => {
 
     const result = getUserInfo(user);
 
-    expect(result).toBe('John Doe Denmark(DK) Somes address');
+    expect(result).toBe('John Doe Denmark (DK) Some address');
   });
 });
