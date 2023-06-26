@@ -21,6 +21,10 @@ export function App(props: IAppProps) {
       item.name.toLowerCase().includes(filters.searchTerm.toLowerCase())
   );
 
+  function handleItemChange(item: IItem) {
+    setItems(items.map((i) => (i.id === item.id ? item : i)));
+  }
+
   function handleSend() {
     console.log(items);
   }
@@ -34,7 +38,7 @@ export function App(props: IAppProps) {
   return (
     <div>
       <SearchBar value={filters} onChange={setFilters} />
-      <ProductTable items={filteredItems} onChange={setItems} />
+      <ProductTable items={filteredItems} onChange={handleItemChange} />
       <button onClick={handleSend}>Send</button>
     </div>
   );
@@ -75,7 +79,7 @@ function SearchBar({ onChange, value }: ISearchBarProps) {
 
 interface IProductTableProps {
   items: IItem[];
-  onChange: (items: IItem[]) => void;
+  onChange: (item: IItem) => void;
 }
 
 function ProductTable({ items, onChange }: IProductTableProps) {
@@ -89,10 +93,6 @@ function ProductTable({ items, onChange }: IProductTableProps) {
     {}
   );
 
-  function handleItemChange(item: IItem) {
-    onChange(items.map((i) => (i.id === item.id ? item : i)));
-  }
-
   return (
     <div>
       <div>Name | Price</div>
@@ -101,7 +101,7 @@ function ProductTable({ items, onChange }: IProductTableProps) {
         <>
           <ProductCategoryRow name={categoryName} />
           {items.map((item) => (
-            <ProductRow key={item.id} item={item} onChange={handleItemChange} />
+            <ProductRow key={item.id} item={item} onChange={onChange} />
           ))}
         </>
       ))}
