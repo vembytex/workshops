@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IItem } from "../items";
+import { context } from "./serviceContext";
 
 export interface IAppProps {}
 
@@ -9,6 +10,8 @@ interface ISearchFilters {
 }
 
 export function App(props: IAppProps) {
+  const { getValue } = context.useShoppingListService();
+
   const [items, setItems] = useState<IItem[]>([]);
   const [filters, setFilters] = useState<ISearchFilters>({
     searchTerm: "",
