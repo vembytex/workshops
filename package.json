@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/Vembyte-ApS/workshops#readme",
   "dependencies": {
-    "rxjs": "6.6.6"
+    "rxjs": "6.6.6",
+    "zustand": "4.3.8"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.20",

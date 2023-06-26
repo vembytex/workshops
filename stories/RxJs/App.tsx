@@ -10,8 +10,6 @@ interface ISearchFilters {
 }
 
 export function App(props: IAppProps) {
-  const { getValue } = context.useShoppingListService();
-
   const [items, setItems] = useState<IItem[]>([]);
   const [filters, setFilters] = useState<ISearchFilters>({
     searchTerm: "",

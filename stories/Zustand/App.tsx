@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IItem } from "../items";
+import { useShoppingListService } from "./store";
 
 export interface IAppProps {}
 
