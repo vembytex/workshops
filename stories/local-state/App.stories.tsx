@@ -3,7 +3,7 @@ import { App, IAppProps } from "./App";
 import React from "react";
 
 export default {
-  title: "App",
+  title: "Local State",
   component: App,
 } as Meta<IAppProps>;
 
