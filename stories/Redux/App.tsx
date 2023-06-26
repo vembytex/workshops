@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IItem } from "../items";
+import { useAppDispatch, useAppSelector } from "./hooks";
+import { increment, selectCount } from "./shoppingListSlice";
 
 export interface IAppProps {}
 
@@ -9,6 +11,9 @@ interface ISearchFilters {
 }
 
 export function App(props: IAppProps) {
+  const count = useAppSelector(selectCount);
+  const dispatch = useAppDispatch();
+
   const [items, setItems] = useState<IItem[]>([]);
   const [filters, setFilters] = useState<ISearchFilters>({
     searchTerm: "",
