@@ -8,12 +8,54 @@ interface ISearchFilters {
   showOnlyInStock: boolean;
 }
 
+interface IShoppingListState {
+  items: IItem[];
+  selectedFilters: ISearchFilters;
+}
+
+interface IShoppingListAction {
+  type: "setFilters" | "setItems";
+  payload: any;
+}
+
+function getInitialState() {
+  return {
+    items: [],
+    selectedFilters: {
+      searchTerm: "",
+      showOnlyInStock: false,
+    },
+  };
+}
+
 export function App(props: IAppProps) {
-  const [items, setItems] = useState<IItem[]>([]);
-  const [filters, setFilters] = useState<ISearchFilters>({
-    searchTerm: "",
-    showOnlyInStock: false,
-  });
+  const [state, dispatch] = useReducer(
+    (
+      state: IShoppingListState,
+      action: IShoppingListAction
+    ): IShoppingListState => {
+      switch (action.type) {
+        case "setItems":
+          return { ...state, items: action.payload };
+        case "setFilters":
+          return { ...state, selectedFilters: action.payload };
+      }
+
+      // Here we are getting in an action, and should return the updated state after the action is applied
+      return { ...state };
+    },
+    getInitialState()
+  );
+
+  const { items, selectedFilters: filters } = state;
+
+  function setItems(items: IItem[]) {
+    dispatch({ type: "setItems", payload: items });
+  }
+
+  function setFilters(value: ISearchFilters) {
+    dispatch({ type: "setFilters", payload: value });
+  }
 
   const filteredItems = items.filter(
     (item) =>

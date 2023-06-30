@@ -1,29 +1,14 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { IItem } from "../items";
+import { useStore } from "./store";
 
 export interface IAppProps {}
 
-interface ISearchFilters {
-  searchTerm: string;
-  showOnlyInStock: boolean;
-}
-
 export function App(props: IAppProps) {
-  const [items, setItems] = useState<IItem[]>([]);
-  const [filters, setFilters] = useState<ISearchFilters>({
-    searchTerm: "",
-    showOnlyInStock: false,
-  });
-
-  const filteredItems = items.filter(
-    (item) =>
-      (!filters.showOnlyInStock || item.stocked) &&
-      item.name.toLowerCase().includes(filters.searchTerm.toLowerCase())
-  );
-
-  function handleItemChange(item: IItem) {
-    setItems(items.map((i) => (i.id === item.id ? item : i)));
-  }
+  const {
+    state: { items },
+    dispatch,
+  } = useStore();
 
   function handleSend() {
     console.log(items);
@@ -32,30 +17,42 @@ export function App(props: IAppProps) {
   useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/vembytex/workshops/introduction-to-react/tasks/items.json"
-    ).then((response) => response.json().then((result) => setItems(result)));
+    ).then((response) =>
+      response
+        .json()
+        .then((result) => dispatch({ type: "setItems", payload: result }))
+    );
   }, []);
 
   return (
     <div>
-      <SearchBar value={filters} onChange={setFilters} />
-      <ProductTable items={filteredItems} onChange={handleItemChange} />
+      <SearchBar />
+      <ProductTable />
       <button onClick={handleSend}>Send</button>
     </div>
   );
 }
 
-interface ISearchBarProps {
-  value: ISearchFilters;
-  onChange: (value: ISearchFilters) => void;
-}
+interface ISearchBarProps {}
 
-function SearchBar({ onChange, value }: ISearchBarProps) {
+function SearchBar(props: ISearchBarProps) {
+  const {
+    state: { selectedFilters: value },
+    dispatch,
+  } = useStore();
+
   function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
-    onChange({ ...value, searchTerm: ev.target.value });
+    dispatch({
+      type: "setFilters",
+      payload: { ...value, searchTerm: ev.target.value },
+    });
   }
 
   function handleCheckboxChange() {
-    onChange({ ...value, showOnlyInStock: !value.showOnlyInStock });
+    dispatch({
+      type: "setFilters",
+      payload: { ...value, showOnlyInStock: !value.showOnlyInStock },
+    });
   }
 
   return (
@@ -77,13 +74,20 @@ function SearchBar({ onChange, value }: ISearchBarProps) {
   );
 }
 
-interface IProductTableProps {
-  items: IItem[];
-  onChange: (item: IItem) => void;
-}
+interface IProductTableProps {}
 
-function ProductTable({ items, onChange }: IProductTableProps) {
-  const categorizedItems: Record<string, IItem[]> = items.reduce<
+function ProductTable(props: IProductTableProps) {
+  const {
+    state: { items, selectedFilters: filters },
+  } = useStore();
+
+  const filteredItems = items.filter(
+    (item) =>
+      (!filters.showOnlyInStock || item.stocked) &&
+      item.name.toLowerCase().includes(filters.searchTerm.toLowerCase())
+  );
+
+  const categorizedItems: Record<string, IItem[]> = filteredItems.reduce<
     Record<string, IItem[]>
   >(
     (acc, item) => ({
@@ -101,7 +105,7 @@ function ProductTable({ items, onChange }: IProductTableProps) {
         <>
           <ProductCategoryRow name={categoryName} />
           {items.map((item) => (
-            <ProductRow key={item.id} item={item} onChange={onChange} />
+            <ProductRow key={item.id} item={item} />
           ))}
         </>
       ))}
@@ -111,12 +115,12 @@ function ProductTable({ items, onChange }: IProductTableProps) {
 
 interface IProductRowProps {
   item: IItem;
-  onChange: (value: IItem) => void;
 }
 
-function ProductRow({ item, onChange }: IProductRowProps) {
+function ProductRow({ item }: IProductRowProps) {
+  const { dispatch } = useStore();
   function handleInputChange(ev: ChangeEvent<HTMLInputElement>) {
-    onChange({ ...item, name: ev.target.value });
+    dispatch({ type: "setItem", payload: { ...item, name: ev.target.value } });
   }
 
   return (
