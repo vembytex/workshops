@@ -6,7 +6,7 @@ import { App } from "./behaviorSubject";
 /**
  * @vitest-environment jsdom
  */
-describe.skip("<App />", () => {
+describe("<App />", () => {
   it("has react state with initial value", async () => {
     // Arrange
     const app = render(<App />);

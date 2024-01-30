@@ -3,7 +3,7 @@ import { asyncObservable } from "./2-asyncObservable";
 import { rxSandbox } from "rx-sandbox";
 
 // TODO: REMOVE SKIP WHEN AT THIS TASK
-describe.skip("async observable", () => {
+describe("async observable", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     return () => vi.useRealTimers();

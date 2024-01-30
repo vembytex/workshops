@@ -1,15 +1,23 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { BehaviorSubject } from "rxjs";
+
+const state = new BehaviorSubject<string>("initial");
 
 export function App(): React.ReactNode {
-  const [state, setState] = useState("initial");
+  const [, setReactState] = useState<boolean>(false);
 
   const handleClick = useCallback(() => {
-    setState("modified");
+    state.next("modified");
+  }, []);
+
+  useEffect(() => {
+    const sub = state.subscribe((value) => setReactState((s) => !s));
+    return () => sub.unsubscribe();
   }, []);
 
   return (
     <div>
-      State is: {state}{" "}
+      State is: {state.value}{" "}
       <button role="button" onClick={handleClick}>
         change state
       </button>

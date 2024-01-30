@@ -3,7 +3,7 @@ import { syncObservable } from "./1-syncObservable";
 import { rxSandbox } from "rx-sandbox";
 
 // TODO: REMOVE SKIP WHEN AT THIS TASK
-describe.skip("Simple observable", () => {
+describe("Simple observable", () => {
   it("emits as expected", () => {
     const { hot, cold, flush, getMessages, e, s } = rxSandbox.create(true);
 
