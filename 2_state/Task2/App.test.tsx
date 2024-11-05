@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import React, * as reactModule from 'react';
+import React from 'react';
 import App, { ISomeItem } from './App';
+import { it, expect } from 'vitest';
 
 it('renders filetered data and doesnt render unnessary due to wrong state', async () => {
   const items: ISomeItem[] = [
@@ -40,7 +41,7 @@ it('renders filetered data and doesnt render unnessary due to wrong state', asyn
   const c1 = screen.queryByText('c_2');
 
   expect(a1).not.toBeNull();
-  expect(a1).not.toBeNull();
+  expect(a2).not.toBeNull();
   expect(b1).toBeNull();
   expect(c1).toBeNull();
   expect(rerenders).toBe(1);

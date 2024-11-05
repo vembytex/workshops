@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import React, * as reactModule from 'react';
+import React from 'react';
 import App from './App';
+import { it, expect } from "vitest";
 
 it('doesnt render unnessary due to wrong state', async () => {
 

@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React, { useCallback, useState } from 'react';
+import { it, expect } from "vitest";
 
 function App() {
   const [items, setItems] = useState(() =>

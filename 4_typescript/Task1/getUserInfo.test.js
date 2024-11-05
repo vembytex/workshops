@@ -1,4 +1,5 @@
 import { getUserInfo } from './getUserInfo';
+import { describe, it, expect } from 'vitest';
 
 describe('getUserInfo', () => {
   it('renders minimum data safely', () => {
