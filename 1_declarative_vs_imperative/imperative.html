@@ -28,14 +28,31 @@
       name="inputC"
       oninput="handleInput(event)"
     />
+    <label for="inputC">D</label>
+    <input
+      style="display: block"
+      type="text"
+      name="inputD"
+      oninput="handleInput(event)"
+    />
 
     <div style="margin-top: 10px">
       <span>Value: <span id="container"></span></span>
     </div>
 
     <script>
-      function handleInput(e) {
+      var container = document.getElementById('container');
 
+      function handleInput(e) {
+        var elements = document.getElementsByTagName('input');
+        var result = '';
+
+        for (let index = 0; index < elements.length; index++) {
+          const element = elements[index];
+          result += element.value;
+        }
+
+        container.innerHTML = result;
       }
     </script>
   </body>

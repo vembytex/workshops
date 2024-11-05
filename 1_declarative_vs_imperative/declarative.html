@@ -10,6 +10,41 @@
     <div id="root"></div>
 
     <script>
+      var root = document.getElementById('root');
+      var state = { a: '', b: '', c: '' };
+
+      function setState(newState) {
+        state = newState;
+        render();
+      }
+
+      function render() {
+        function handleInput(e) {
+          const name = e.target.name;
+          const value = e.target.value;
+          setState({ ...state, [name]: value });
+        }
+
+        var template = `<input style="display: block" type="text" name="a" value="${state.a}" />
+        <input style="display: block" type="text" name="b" value="${state.b}" />
+        <input style="display: block" type="text" name="c" value="${state.c}" />
+        value: ${state.a}${state.b}${state.c}`;
+
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = template;
+
+        var inputs = wrapper.getElementsByTagName('input');
+
+        for (let index = 0; index < inputs.length; index++) {
+          const element = inputs[index];
+          element.addEventListener('change', handleInput);
+        }
+
+        root.replaceChildren(wrapper);
+      }
+
+      render();
+      render();
     </script>
   </body>
 </html>

@@ -38,7 +38,7 @@ it('renders filetered data and doesnt render unnessary due to wrong state', asyn
   const a2 = await screen.findByText('a_2');
 
   const b1 = screen.queryByText('b_1');
-  const c1 = screen.queryByText('c_2');
+  const c1 = screen.queryByText('c_1');
 
   expect(a1).not.toBeNull();
   expect(a2).not.toBeNull();

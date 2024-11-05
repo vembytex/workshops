@@ -12,5 +12,13 @@ export interface IAppProps {
 
 // TASK: Print all items names filtered by prop
 export default function App({ items, filterBy }: IAppProps) {
-  return <ul></ul>;
+  return (
+    <ul>
+      {items
+        .filter((item) => item.type === filterBy)
+        .map((item) => (
+          <li>{item.name}</li>
+        ))}
+    </ul>
+  );
 }
