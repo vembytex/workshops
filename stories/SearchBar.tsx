@@ -2,7 +2,9 @@ import React from "react";
 
 export interface ISearchBarProps {
   searchValue: string;
+  stockValue: boolean;
   onSearchValueChange: (value: string) => void;
+  onStockValueChange: (value: boolean) => void;
 }
 
 export function SearchBar(props: ISearchBarProps) {
@@ -15,7 +17,12 @@ export function SearchBar(props: ISearchBarProps) {
       />
       <div>
         <label>
-          <input type="checkbox" /> Only show products in stock
+          <input
+            type="checkbox"
+            checked={props.stockValue}
+            onChange={(e) => props.onStockValueChange(!props.stockValue)}
+          />{" "}
+          Only show products in stock
         </label>
       </div>
     </div>
