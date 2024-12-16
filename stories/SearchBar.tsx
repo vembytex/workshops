@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import GlobalStoreContext, { useStore } from "./context";
 
 export interface ISearchBarProps {
   searchValue: string;
@@ -8,8 +9,11 @@ export interface ISearchBarProps {
 }
 
 export function SearchBar(props: ISearchBarProps) {
+  const store = useStore();
   return (
     <div>
+      total items: {store.items.length}
+      <button onClick={store.updateItems}>Clear items</button>
       <input
         value={props.searchValue}
         onChange={(e) => props.onSearchValueChange(e.target.value)}

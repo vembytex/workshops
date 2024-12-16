@@ -29,6 +29,9 @@ importers:
       '@storybook/testing-library':
         specifier: ^0.0.14-next.2
         version: 0.0.14-next.2
+      '@types/react':
+        specifier: 18.3.12
+        version: 18.3.12
       prop-types:
         specifier: ^15.8.1
         version: 15.8.1
