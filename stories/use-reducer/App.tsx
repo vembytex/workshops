@@ -40,9 +40,6 @@ export function App(props: IAppProps) {
         case "setFilters":
           return { ...state, selectedFilters: action.payload };
       }
-
-      // Here we are getting in an action, and should return the updated state after the action is applied
-      return { ...state };
     },
     getInitialState()
   );
